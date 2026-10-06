@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Loan Eligibility Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">SKILL<span>WALLET</span><small>AI Finance Suite</small></div>
+      <nav>
+        <a class="active" href="#dashboard">⌂ Dashboard</a>
+        <a href="#loan">▣ Loan Eligibility</a>
+        <a href="#credit">◉ Credit Analyzer</a>
+        <a href="#emi">▤ EMI Calculator</a>
+        <a href="#tips">✦ AI Financial Tips</a>
+      </nav>
+      <div class="sidebar-footer">Secure • Private • AI-assisted</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">BFSI / PERSONAL FINANCE</div>
+          <h1>AI Loan Eligibility Checker</h1>
+          <p>One workspace for loan decisions, credit insights, EMI planning and financial guidance.</p>
+        </div>
+        <div class="status-pill"><span></span> AI Ready</div>
+      </header>
+
+      <section id="dashboard" class="hero glass">
+        <div>
+          <span class="badge">FINANCE • INDIVIDUAL</span>
+          <h2>Make smarter borrowing decisions.</h2>
+          <p>Enter your financial profile once and get an instant eligibility estimate, EMI plan, credit analysis and practical next steps.</p>
+          <a class="primary-btn" href="#loan">Check Eligibility →</a>
+        </div>
+        <div class="hero-stat">
+          <strong>4</strong>
+          <span>financial tools</span>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <article id="loan" class="card glass">
+          <div class="section-head">
+            <div><span class="icon">✓</span><h3>Loan Eligibility</h3></div>
+            <span class="muted">Instant estimate</span>
+          </div>
+          <form id="loanForm" class="form-grid">
+            <label>Monthly income (₹)<input id="income" type="number" min="0" value="60000" required></label>
+            <label>Existing monthly EMI (₹)<input id="existingEmi" type="number" min="0" value="5000" required></label>
+            <label>Age<input id="age" type="number" min="18" max="75" value="30" required></label>
+            <label>Credit score<input id="creditScore" type="number" min="300" max="900" value="750" required></label>
+            <label>Employment
+              <select id="employment">
+                <option>Salaried</option><option>Self-employed</option><option>Business owner</option>
+              </select>
+            </label>
+            <label>Requested loan (₹)<input id="loanAmount" type="number" min="0" value="1000000" required></label>
+            <button class="primary-btn full" type="submit">Analyze Eligibility</button>
+          </form>
+          <div id="eligibilityResult" class="result hidden"></div>
+        </article>
+
+        <article id="credit" class="card glass">
+          <div class="section-head">
+            <div><span class="icon">◉</span><h3>Credit Score Analyzer</h3></div>
+          </div>
+          <div class="score-ring"><span id="scoreValue">750</span><small>/ 900</small></div>
+          <div id="scoreLabel" class="score-label">Good credit profile</div>
+          <div class="meter"><span id="scoreMeter"></span></div>
+          <ul id="creditInsights" class="insights">
+            <li>Maintain timely repayments to protect your score.</li>
+            <li>Keep credit utilization below 30% where possible.</li>
+            <li>Avoid multiple loan applications in a short period.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article id="emi" class="card glass">
+          <div class="section-head">
+            <div><span class="icon">₹</span><h3>EMI Calculator</h3></div>
+          </div>
+          <div class="form-grid">
+            <label>Principal (₹)<input id="emiPrincipal" type="number" value="1000000"></label>
+            <label>Annual interest (%)<input id="emiRate" type="number" step="0.1" value="10"></label>
+            <label>Tenure (years)<input id="emiYears" type="number" value="5"></label>
+          </div>
+          <button id="calculateEmi" class="secondary-btn full">Calculate EMI</button>
+          <div id="emiResult" class="emi-result">
+            <div><span>Monthly EMI</span><strong id="emiValue">₹21,247</strong></div>
+            <div><span>Total interest</span><strong id="interestValue">₹274,834</strong></div>
+            <div><span>Total payment</span><strong id="paymentValue">₹1,274,834</strong></div>
+          </div>
+        </article>
+
+        <article id="tips" class="card glass">
+          <div class="section-head">
+            <div><span class="icon">✦</span><h3>AI Financial Tips</h3></div>
+            <span class="muted">Claude-ready</span>
+          </div>
+          <div id="tipsOutput" class="tips-box">
+            <p><strong>Personalized starting point</strong></p>
+            <p>Based on your profile, focus on keeping your total monthly debt obligations comfortable relative to income and preserve an emergency buffer before taking new debt.</p>
+            <button id="generateTips" class="secondary-btn">Generate AI Guidance</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="card glass data-card">
+        <div class="section-head">
+          <div><span class="icon">▦</span><h3>Financial Record</h3></div>
+          <button id="saveRecord" class="secondary-btn">Save Session</button>
+        </div>
+        <p id="saveStatus" class="muted">Records are stored locally in this demo. Connect Google Sheets through the backend for shared persistence.</p>
+      </section>
+
+      <footer>AI Loan Eligibility Checker • Demo application • Never enter real banking credentials or confidential account numbers.</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

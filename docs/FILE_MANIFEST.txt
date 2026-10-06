@@ -1,0 +1,9 @@
+.env.example
+.gitignore
+README.md
+app.js
+docs/PROJECT_BRIEF.md
+index.html
+package.json
+server.js
+styles.css

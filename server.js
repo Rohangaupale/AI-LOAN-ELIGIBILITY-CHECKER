@@ -1,13 +1,17 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+import http from "http";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 
 const mime = {
-  ".html": "text/html",
-  ".css": "text/css",
-  ".js": "application/javascript",
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8",
   ".json": "application/json",
   ".png": "image/png",
   ".jpg": "image/jpeg",
@@ -16,25 +20,27 @@ const mime = {
 };
 
 const server = http.createServer((req, res) => {
-  let filePath = req.url.split("?")[0];
+  let requested = decodeURIComponent(req.url.split("?")[0]);
 
-  if (filePath === "/") {
-    filePath = "/index.html";
+  if (requested === "/") {
+    requested = "/index.html";
   }
 
-  const fullPath = path.join(process.cwd(), filePath);
+  const filePath = path.join(__dirname, requested);
 
-  fs.readFile(fullPath, (err, data) => {
+  fs.readFile(filePath, (err, data) => {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Not found");
+      res.writeHead(404, {
+        "Content-Type": "text/plain; charset=utf-8"
+      });
+      res.end("404 - File not found");
       return;
     }
 
-    const ext = path.extname(fullPath);
+    const extension = path.extname(filePath);
 
     res.writeHead(200, {
-      "Content-Type": mime[ext] || "application/octet-stream"
+      "Content-Type": mime[extension] || "application/octet-stream"
     });
 
     res.end(data);

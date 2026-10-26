@@ -2,6 +2,9 @@
 
 A responsive BFSI web application inspired by the supplied SkillWallet project brief.
 
+full documentation:
+https://drive.google.com/file/d/1-XnpszlJQfxx0h0LVYkFZYG2k8HWZ233/view?usp=drivesdk
+
 ## Features
 - Loan eligibility estimate using income, age, credit score, employment and existing EMI.
 - Credit score analysis and guidance.
